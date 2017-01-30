@@ -13,7 +13,7 @@ Download the package to your env with::
 
 Getting Started
 ===============
-These instructions will get you a copy of this package up and running in your local machine for development and test porpo1uses. Keep reading if you want to deploy and contribute to the project.
+These instructions will get you a copy of this package up and running in your local machine for development and test porpouses. Keep reading if you want to deploy and contribute to the project.
 
 Prerequisites
 -------------
