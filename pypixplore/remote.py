@@ -274,7 +274,7 @@ class Index:
 
         return self.get_len_request(request)
 
-    def how_many_packages_version_py(self):
+    def how_many_packages_version_py(self, n_sample=700):
         """
         print('This command can take a while, do you wish to continue? /n type Y or N')
         aux = input()
@@ -290,7 +290,6 @@ class Index:
 
         rd.shuffle(list_of_all_packages)
 
-        n_sample = 700
         all_packages = self.get_multiple_JSONs(list_of_all_packages[:n_sample])
 
         count2master = 0
@@ -313,24 +312,27 @@ class Index:
                 count3master = count3master + 1
 
 
-        count_final = [round((count2master / n_sample) * 10),
-                       round((count3master / n_sample) * 10)]
+        count_final = [round((count2master / n_sample), 2) * 10,
+                       round((count3master / n_sample), 2) * 10]
 
-        self.print_graphics(count_final[0], count_final[1], n_sample)
+        return count_final
 
-    def print_graphics(self, python2, python3, n_sample):
+    def print_graphics(self, python2, python3):
         count_python2 = ""
         count_python3 = ""
 
-        for i in range(0, python2):
+        for i in range(0, round(python2)):
             count_python2 = count_python2 + "*"
-        for i in range(0, python3):
+        for i in range(0, round(python3)):
             count_python3 = count_python3 + "*"
 
-        print('             |')
-        print('Python 2.x.x |{} {}%'.format(count_python2, python2 * 10))
-        print('             |')
-        print('             |')
-        print('Python 3.x.x |{} {}%'.format(count_python3, python3 * 10))
-        print('             |')
-        print('Sample error is 5% and condifence level of 99%')
+        string_to_print = '''
+                    |
+        Python 2.x.x|{} {}%
+                    |
+                    |
+        Python 3.x.x|{} {}%
+                    |
+        '''.format(count_python2, python2*10, count_python3, python3 * 10)
+
+        return string_to_print
